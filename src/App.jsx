@@ -8,10 +8,6 @@ import PuntoFijoProblema from './Problema1_PuntoFijo'
 import NewtonProblema from './Problema2_Newton'
 import SecanteProblema from './Problema3_Secante'
 import MullerProblema from './Muller_Problema'
-import ExamenP3 from './Examen_P3_FalsaPosicion_Cubica'
-import ExamenP4 from './Examen_P4_PuntoFijo_Cubica'
-import ExamenP5 from './Examen_P5_FalsaPosicion_Coseno'
-import ExamenP6 from './Examen_P6_Muller_Cuartica'
 import PracticaLU from './Practica_BalanceoCarga_LU'
 import PracticaJacobi from './Practica_BalanceoCarga_Jacobi'
 
@@ -91,19 +87,6 @@ const MODULES = [
     problems: [
       { id: 'sel-1', label: 'Sesión 6', desc: 'Balanceo de carga en clústers — factorización LU', Component: PracticaLU },
       { id: 'sel-2', label: 'Sesión 7', desc: 'Balance de carga en un clúster de 4 nodos — método de Jacobi', Component: PracticaJacobi },
-    ],
-  },
-  {
-    id: 'examen',
-    name: 'Examen',
-    subtitle: 'Falsa Posición · Punto Fijo · Müller',
-    color: 'rose',
-    icon: Icon.open,
-    problems: [
-      { id: 'examen-3', label: 'Problema 3', desc: 'Falsa posición — x³ − 5x − 3 = 0', Component: ExamenP3 },
-      { id: 'examen-4', label: 'Problema 4', desc: 'Punto fijo — x³ − 3x + 1 = 0', Component: ExamenP4 },
-      { id: 'examen-5', label: 'Problema 5', desc: 'Falsa posición — 2cos(x) − x/2 = 0', Component: ExamenP5 },
-      { id: 'examen-6', label: 'Problema 6', desc: 'Müller — x⁴ − 4x³ − 19x² + 106x − 120', Component: ExamenP6 },
     ],
   },
 ]
@@ -308,7 +291,7 @@ function Home({ onOpenModule, onOpenProblem }) {
 
 export default function App() {
   const [activeId, setActiveId] = useState(null)
-  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel', 'examen'])
+  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel'])
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const active = useMemo(() => ALL_PROBLEMS.find(p => p.id === activeId) || null, [activeId])
