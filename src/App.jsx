@@ -13,6 +13,7 @@ import ExamenP4 from './Examen_P4_PuntoFijo_Cubica'
 import ExamenP5 from './Examen_P5_FalsaPosicion_Coseno'
 import ExamenP6 from './Examen_P6_Muller_Cuartica'
 import PracticaLU from './Practica_BalanceoCarga_LU'
+import PracticaJacobi from './Practica_BalanceoCarga_Jacobi'
 
 /* ============ Iconos (SVG minimalistas, sin dependencias externas) ============ */
 const Icon = {
@@ -84,11 +85,12 @@ const MODULES = [
   {
     id: 'sel',
     name: 'Sistemas de Ecuaciones Lineales',
-    subtitle: 'Factorización LU · Doolittle',
+    subtitle: 'Factorización LU · Método de Jacobi',
     color: 'emerald',
     icon: Icon.matrix,
     problems: [
       { id: 'sel-1', label: 'Sesión 6', desc: 'Balanceo de carga en clústers — factorización LU', Component: PracticaLU },
+      { id: 'sel-2', label: 'Sesión 7', desc: 'Balance de carga en un clúster de 4 nodos — método de Jacobi', Component: PracticaJacobi },
     ],
   },
   {
@@ -271,7 +273,7 @@ function Home({ onOpenModule, onOpenProblem }) {
         <h1 className="text-2xl md:text-3xl font-bold text-white">Curso de Métodos Numéricos</h1>
         <p className="text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">
           Este panel reúne, en un solo lugar, los {ALL_PROBLEMS.length} ejercicios desarrollados a lo largo del curso: los métodos de intervalo cerrado,
-          los métodos abiertos y la sesión más reciente sobre raíces de polinomios con el método de Müller. Selecciona un módulo para explorar
+          los métodos abiertos, las raíces de polinomios con el método de Müller y los sistemas de ecuaciones lineales (factorización LU y método de Jacobi). Selecciona un módulo para explorar
           cada ejercicio con su tabla de iteraciones, gráfico y resultados recalculados en tiempo real.
         </p>
       </motion.div>
