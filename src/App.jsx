@@ -10,6 +10,7 @@ import SecanteProblema from './Problema3_Secante'
 import MullerProblema from './Muller_Problema'
 import PracticaLU from './Practica_BalanceoCarga_LU'
 import PracticaJacobi from './Practica_BalanceoCarga_Jacobi'
+import PracticaLagrange from './Practica_Interpolacion_Lagrange'
 
 /* ============ Iconos (SVG minimalistas, sin dependencias externas) ============ */
 const Icon = {
@@ -34,6 +35,9 @@ const Icon = {
 matrix: (p) => (
   <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M4 4h16v16H4z M4 10h16M4 16h16M10 4v16M16 4v16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
 ),
+curve: (p) => (
+  <svg viewBox="0 0 24 24" fill="none" {...p}><circle cx="5" cy="17" r="1.6" fill="currentColor"/><circle cx="10" cy="7" r="1.6" fill="currentColor"/><circle cx="15" cy="14" r="1.6" fill="currentColor"/><circle cx="20" cy="5" r="1.6" fill="currentColor"/><path d="M5 17C7 13 8 8 10 7c2 -1 3 5 5 7c2 2 3 -5 5 -9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none"/></svg>
+),
 }
 
 const THEME = {
@@ -42,6 +46,7 @@ const THEME = {
   amber: { text: 'text-amber-300', bg: 'bg-amber-500/15', border: 'border-amber-400/30', dot: 'bg-amber-400' },
   rose: { text: 'text-rose-300', bg: 'bg-rose-500/15', border: 'border-rose-400/30', dot: 'bg-rose-400' },
   emerald: { text: 'text-emerald-300', bg: 'bg-emerald-500/15', border: 'border-emerald-400/30', dot: 'bg-emerald-400' },
+  sky: { text: 'text-sky-300', bg: 'bg-sky-500/15', border: 'border-sky-400/30', dot: 'bg-sky-400' },
 }
 
 const MODULES = [
@@ -87,6 +92,16 @@ const MODULES = [
     problems: [
       { id: 'sel-1', label: 'Sesión 6', desc: 'Balanceo de carga en clústers — factorización LU', Component: PracticaLU },
       { id: 'sel-2', label: 'Sesión 7', desc: 'Balance de carga en un clúster de 4 nodos — método de Jacobi', Component: PracticaJacobi },
+    ],
+  },
+  {
+    id: 'interp',
+    name: 'Interpolación',
+    subtitle: 'Polinomio de Lagrange',
+    color: 'sky',
+    icon: Icon.curve,
+    problems: [
+      { id: 'interp-1', label: 'Sesión 8', desc: 'Latencia vs. memoria RAM en un clúster — interpolación de Lagrange (grado 3)', Component: PracticaLagrange },
     ],
   },
 ]
@@ -256,7 +271,7 @@ function Home({ onOpenModule, onOpenProblem }) {
         <h1 className="text-2xl md:text-3xl font-bold text-white">Curso de Métodos Numéricos</h1>
         <p className="text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">
           Este panel reúne, en un solo lugar, los {ALL_PROBLEMS.length} ejercicios desarrollados a lo largo del curso: los métodos de intervalo cerrado,
-          los métodos abiertos, las raíces de polinomios con el método de Müller y los sistemas de ecuaciones lineales (factorización LU y método de Jacobi). Selecciona un módulo para explorar
+          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (método de Lagrange). Selecciona un módulo para explorar
           cada ejercicio con su tabla de iteraciones, gráfico y resultados recalculados en tiempo real.
         </p>
       </motion.div>
@@ -291,7 +306,7 @@ function Home({ onOpenModule, onOpenProblem }) {
 
 export default function App() {
   const [activeId, setActiveId] = useState(null)
-  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel'])
+  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel', 'interp'])
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const active = useMemo(() => ALL_PROBLEMS.find(p => p.id === activeId) || null, [activeId])
