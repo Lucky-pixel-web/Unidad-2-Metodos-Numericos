@@ -11,6 +11,7 @@ import MullerProblema from './Muller_Problema'
 import PracticaLU from './Practica_BalanceoCarga_LU'
 import PracticaJacobi from './Practica_BalanceoCarga_Jacobi'
 import PracticaLagrange from './Practica_Interpolacion_Lagrange'
+import PracticaNewton from './Practica_Interpolacion_Newton'
 
 /* ============ Iconos (SVG minimalistas, sin dependencias externas) ============ */
 const Icon = {
@@ -97,11 +98,12 @@ const MODULES = [
   {
     id: 'interp',
     name: 'Interpolación',
-    subtitle: 'Polinomio de Lagrange',
+    subtitle: 'Lagrange · Newton',
     color: 'sky',
     icon: Icon.curve,
     problems: [
       { id: 'interp-1', label: 'Sesión 8', desc: 'Latencia vs. memoria RAM en un clúster — interpolación de Lagrange (grado 3)', Component: PracticaLagrange },
+      { id: 'interp-2', label: 'Sesión 9', desc: 'Latencia vs. carga concurrente — interpolación de Newton (diferencias divididas)', Component: PracticaNewton },
     ],
   },
 ]
@@ -271,7 +273,7 @@ function Home({ onOpenModule, onOpenProblem }) {
         <h1 className="text-2xl md:text-3xl font-bold text-white">Curso de Métodos Numéricos</h1>
         <p className="text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">
           Este panel reúne, en un solo lugar, los {ALL_PROBLEMS.length} ejercicios desarrollados a lo largo del curso: los métodos de intervalo cerrado,
-          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (método de Lagrange). Selecciona un módulo para explorar
+          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (métodos de Lagrange y de Newton). Selecciona un módulo para explorar
           cada ejercicio con su tabla de iteraciones, gráfico y resultados recalculados en tiempo real.
         </p>
       </motion.div>
