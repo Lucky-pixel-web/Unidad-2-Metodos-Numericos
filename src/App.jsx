@@ -13,6 +13,7 @@ import PracticaJacobi from './Practica_BalanceoCarga_Jacobi'
 import PracticaLagrange from './Practica_Interpolacion_Lagrange'
 import PracticaNewton from './Practica_Interpolacion_Newton'
 import PracticaGregory from './Practica_Interpolacion_Gregory'
+import PracticaTrapecio from './Practica_Integracion_Trapecio'
 
 /* ============ Iconos (SVG minimalistas, sin dependencias externas) ============ */
 const Icon = {
@@ -36,6 +37,9 @@ const Icon = {
 ),
 matrix: (p) => (
   <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M4 4h16v16H4z M4 10h16M4 16h16M10 4v16M16 4v16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+),
+integral: (p) => (
+  <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M14 4c-2 0-2.5 1.5-2.8 3.5L10 17c-.3 2-.8 3.500-3 3.500M4 20h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/><path d="M13 12c1.5-2 3-2 4.500 0s3 2 3.500 0" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" fill="none"/></svg>
 ),
 curve: (p) => (
   <svg viewBox="0 0 24 24" fill="none" {...p}><circle cx="5" cy="17" r="1.6" fill="currentColor"/><circle cx="10" cy="7" r="1.6" fill="currentColor"/><circle cx="15" cy="14" r="1.6" fill="currentColor"/><circle cx="20" cy="5" r="1.6" fill="currentColor"/><path d="M5 17C7 13 8 8 10 7c2 -1 3 5 5 7c2 2 3 -5 5 -9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none"/></svg>
@@ -106,6 +110,16 @@ const MODULES = [
       { id: 'interp-1', label: 'Sesión 8', desc: 'Latencia vs. memoria RAM en un clúster — interpolación de Lagrange (grado 3)', Component: PracticaLagrange },
       { id: 'interp-2', label: 'Sesión 9', desc: 'Latencia vs. carga concurrente — interpolación de Newton (diferencias divididas)', Component: PracticaNewton },
       { id: 'interp-3', label: 'Sesión 9', desc: 'Newton–Gregory progresivo — diferencias finitas (nodos equiespaciados)', Component: PracticaGregory },
+    ],
+  },
+  {
+    id: 'integ',
+    name: 'Integración Numérica',
+    subtitle: 'Trapecio compuesto',
+    color: 'rose',
+    icon: Icon.integral,
+    problems: [
+      { id: 'integ-1', label: 'Sesión 12', desc: 'Tráfico de red en un servidor web — regla del trapecio compuesto', Component: PracticaTrapecio },
     ],
   },
 ]
@@ -275,7 +289,7 @@ function Home({ onOpenModule, onOpenProblem }) {
         <h1 className="text-2xl md:text-3xl font-bold text-white">Curso de Métodos Numéricos</h1>
         <p className="text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">
           Este panel reúne, en un solo lugar, los {ALL_PROBLEMS.length} ejercicios desarrollados a lo largo del curso: los métodos de intervalo cerrado,
-          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (métodos de Lagrange, Newton y Newton–Gregory). Selecciona un módulo para explorar
+          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (métodos de Lagrange, Newton y Newton–Gregory) y la integración numérica (regla del trapecio compuesto). Selecciona un módulo para explorar
           cada ejercicio con su tabla de iteraciones, gráfico y resultados recalculados en tiempo real.
         </p>
       </motion.div>
@@ -310,7 +324,7 @@ function Home({ onOpenModule, onOpenProblem }) {
 
 export default function App() {
   const [activeId, setActiveId] = useState(null)
-  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel', 'interp'])
+  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel', 'interp', 'integ'])
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const active = useMemo(() => ALL_PROBLEMS.find(p => p.id === activeId) || null, [activeId])
