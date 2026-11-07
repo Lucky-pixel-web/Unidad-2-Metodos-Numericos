@@ -14,6 +14,7 @@ import PracticaLagrange from './Practica_Interpolacion_Lagrange'
 import PracticaNewton from './Practica_Interpolacion_Newton'
 import PracticaGregory from './Practica_Interpolacion_Gregory'
 import PracticaTrapecio from './Practica_Integracion_Trapecio'
+import PracticaSimpson from './Practica_Integracion_Simpson'
 
 /* ============ Iconos (SVG minimalistas, sin dependencias externas) ============ */
 const Icon = {
@@ -115,11 +116,12 @@ const MODULES = [
   {
     id: 'integ',
     name: 'Integración Numérica',
-    subtitle: 'Trapecio compuesto',
+    subtitle: 'Trapecio · Simpson',
     color: 'rose',
     icon: Icon.integral,
     problems: [
       { id: 'integ-1', label: 'Sesión 12', desc: 'Tráfico de red en un servidor web — regla del trapecio compuesto', Component: PracticaTrapecio },
+      { id: 'integ-2', label: 'Sesión 13', desc: 'Consumo de energía de un centro de datos — Simpson 1/3 compuesto', Component: PracticaSimpson },
     ],
   },
 ]
@@ -289,7 +291,7 @@ function Home({ onOpenModule, onOpenProblem }) {
         <h1 className="text-2xl md:text-3xl font-bold text-white">Curso de Métodos Numéricos</h1>
         <p className="text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">
           Este panel reúne, en un solo lugar, los {ALL_PROBLEMS.length} ejercicios desarrollados a lo largo del curso: los métodos de intervalo cerrado,
-          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (métodos de Lagrange, Newton y Newton–Gregory) y la integración numérica (regla del trapecio compuesto). Selecciona un módulo para explorar
+          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (métodos de Lagrange, Newton y Newton–Gregory) y la integración numérica (reglas del trapecio y de Simpson). Selecciona un módulo para explorar
           cada ejercicio con su tabla de iteraciones, gráfico y resultados recalculados en tiempo real.
         </p>
       </motion.div>
