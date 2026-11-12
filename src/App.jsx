@@ -15,6 +15,7 @@ import PracticaNewton from './Practica_Interpolacion_Newton'
 import PracticaGregory from './Practica_Interpolacion_Gregory'
 import PracticaTrapecio from './Practica_Integracion_Trapecio'
 import PracticaSimpson from './Practica_Integracion_Simpson'
+import PracticaEDOEuler from './Practica_EDO_Euler'
 
 /* ============ Iconos (SVG minimalistas, sin dependencias externas) ============ */
 const Icon = {
@@ -45,6 +46,9 @@ integral: (p) => (
 curve: (p) => (
   <svg viewBox="0 0 24 24" fill="none" {...p}><circle cx="5" cy="17" r="1.6" fill="currentColor"/><circle cx="10" cy="7" r="1.6" fill="currentColor"/><circle cx="15" cy="14" r="1.6" fill="currentColor"/><circle cx="20" cy="5" r="1.6" fill="currentColor"/><path d="M5 17C7 13 8 8 10 7c2 -1 3 5 5 7c2 2 3 -5 5 -9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none"/></svg>
 ),
+ode: (p) => (
+  <svg viewBox="0 0 24 24" fill="none" {...p}><path d="M3 20h18M3 20V4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/><path d="M4 17c4-1 7-4 9-8s4-5 7-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none"/><path d="M6 17.5l4-3M11 13l3.500-4.500" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeDasharray="1.5 2"/><circle cx="6" cy="17" r="1.4" fill="currentColor"/><circle cx="13" cy="9" r="1.4" fill="currentColor"/></svg>
+),
 }
 
 const THEME = {
@@ -54,6 +58,7 @@ const THEME = {
   rose: { text: 'text-rose-300', bg: 'bg-rose-500/15', border: 'border-rose-400/30', dot: 'bg-rose-400' },
   emerald: { text: 'text-emerald-300', bg: 'bg-emerald-500/15', border: 'border-emerald-400/30', dot: 'bg-emerald-400' },
   sky: { text: 'text-sky-300', bg: 'bg-sky-500/15', border: 'border-sky-400/30', dot: 'bg-sky-400' },
+  orange: { text: 'text-orange-300', bg: 'bg-orange-500/15', border: 'border-orange-400/30', dot: 'bg-orange-400' },
 }
 
 const MODULES = [
@@ -122,6 +127,16 @@ const MODULES = [
     problems: [
       { id: 'integ-1', label: 'Sesión 12', desc: 'Tráfico de red en un servidor web — regla del trapecio compuesto', Component: PracticaTrapecio },
       { id: 'integ-2', label: 'Sesión 13', desc: 'Consumo de energía de un centro de datos — Simpson 1/3 compuesto', Component: PracticaSimpson },
+    ],
+  },
+  {
+    id: 'edo',
+    name: 'Ecuaciones Diferenciales Ordinarias',
+    subtitle: 'Euler · Euler mejorado · Runge-Kutta',
+    color: 'orange',
+    icon: Icon.ode,
+    problems: [
+      { id: 'edo-1', label: 'Sesión 14', desc: 'PVI (y² − x²)dx + xy dy = 0, y(1) = 2 — Euler y Euler mejorado', Component: PracticaEDOEuler },
     ],
   },
 ]
@@ -291,7 +306,7 @@ function Home({ onOpenModule, onOpenProblem }) {
         <h1 className="text-2xl md:text-3xl font-bold text-white">Curso de Métodos Numéricos</h1>
         <p className="text-slate-400 mt-3 max-w-2xl text-sm leading-relaxed">
           Este panel reúne, en un solo lugar, los {ALL_PROBLEMS.length} ejercicios desarrollados a lo largo del curso: los métodos de intervalo cerrado,
-          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) y la interpolación polinómica (métodos de Lagrange, Newton y Newton–Gregory) y la integración numérica (reglas del trapecio y de Simpson). Selecciona un módulo para explorar
+          los métodos abiertos, las raíces de polinomios con el método de Müller, los sistemas de ecuaciones lineales (factorización LU y método de Jacobi) la interpolación polinómica (métodos de Lagrange, Newton y Newton–Gregory), la integración numérica (reglas del trapecio y de Simpson) y las ecuaciones diferenciales ordinarias (métodos de Euler, Euler mejorado y Runge-Kutta). Selecciona un módulo para explorar
           cada ejercicio con su tabla de iteraciones, gráfico y resultados recalculados en tiempo real.
         </p>
       </motion.div>
@@ -326,7 +341,7 @@ function Home({ onOpenModule, onOpenProblem }) {
 
 export default function App() {
   const [activeId, setActiveId] = useState(null)
-  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel', 'interp', 'integ'])
+  const [expandedIds, setExpandedIds] = useState(['bisec', 'gaa', 'muller', 'sel', 'interp', 'integ', 'edo'])
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const active = useMemo(() => ALL_PROBLEMS.find(p => p.id === activeId) || null, [activeId])
